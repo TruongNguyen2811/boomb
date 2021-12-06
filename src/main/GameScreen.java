@@ -47,7 +47,14 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
             }else if (bitSet.get(KeyEvent.VK_DOWN)){
                 runGame.movePlayer(bomber.DOWN);
             }
+            if (bitSet.get(KeyEvent.VK_SPACE)){
+
+                    runGame.createboom(t);
+                time=t;
+            }
+
             isRunning=true;
+            runGame.CreateBommNo(t);
             repaint();
             try {
                 Thread.sleep(20);
