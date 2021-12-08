@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.BitSet;
+import java.util.Random;
 
 
 public class GameScreen extends JPanel implements KeyListener,Runnable{
@@ -18,6 +19,7 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
         t.start();
         setFocusable(true);
     }
+    public int moveset=0;
     private MyContainer myContainer;
     public GameScreen(MyContainer myContainer){
         initPanelGame();
@@ -32,6 +34,8 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         runGame.draw(g2d);
     }
+    Random random = new Random();
+    int i =random.nextInt(100)+1;
     @Override
     public void run() {
         int time=0;
@@ -49,9 +53,35 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
             }
             if (bitSet.get(KeyEvent.VK_SPACE)){
 
-                    runGame.createboom(t);
-                time=t;
-            }
+                  runGame.createboom(t);
+               time=t;
+               
+           }
+            moveset++;
+            
+            if(moveset == 120){
+                i =random.nextInt(100)+1;
+                moveset=0;
+            }  
+                if(i<=25 ){
+                    runGame.moveMonster(monster.LEFT);
+                }
+                if(i>25 && i<=50){
+                    runGame.moveMonster(monster.RIGHT);
+                }
+                if(i>50 && i<=75){
+                    runGame.moveMonster(monster.UP);
+                }
+                if(i>75){
+                    runGame.moveMonster(monster.DOWN);
+                }
+                
+            
+            
+            
+            
+            
+            
 
             isRunning=true;
             runGame.CreateBommNo(t);

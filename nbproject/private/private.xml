@@ -3,9 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boombl4/src/main/GamePlatform.java</file>
-            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boombl4/src/main/keyboardController.java</file>
-            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boombl4/src/main/main.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/RunGame.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/main.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/bomber.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/Grass.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/GameScreen.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/MyContainer.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/monster.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/newFrame.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/Map.java</file>
+            <file>file:/C:/Users/afkda/Documents/NetBeansProjects/boomb-main/src/main/wall.java</file>
         </group>
     </open-files>
 </project-private>

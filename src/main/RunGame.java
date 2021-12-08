@@ -15,6 +15,9 @@ import static main.Map.SIZE;
 public class RunGame {
     private Grass grass;
     private bomber player;
+    private monster monster1;
+ 
+   
     private ArrayList<Grass> arrGrass;
     private ArrayList<power> arrayPower;
     private ArrayList<Tangtoc> arrayBoots;
@@ -51,7 +54,14 @@ public class RunGame {
         arrayBoots=new ArrayList<>();
         arrayPower=new ArrayList<>();
         player=new bomber(0,ScreenHeight-90-SIZE, bomber.DOWN,1);
-        //CreatePlayer();
+      //test monster
+      // test monster 
+        monster1 = new monster (100,ScreenHeight-90-SIZE, monster.DOWN,1);
+                 //test monster
+      // test monster 
+                 //test monster
+      // test monster 
+           //CreatePlayer();
         CreateGrass();
         CreateBoots(arrGrass);
         CreatePower(arrGrass);
@@ -166,11 +176,23 @@ public class RunGame {
                 bomNo.draw(g2d, arrGrass, arrWall);
             }
             player.draw(g2d);
-
+            monster1.draw(g2d);
 
         }catch (ConcurrentModificationException e){
 
         }
     }
-
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
+    public void moveMonster(int newOrient){
+        monster1.changeOrient(newOrient);
+        monster1.move(arrGrass,arrWall,1);
+    }
 }
+
+
+
+
