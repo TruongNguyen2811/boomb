@@ -191,7 +191,20 @@ public class RunGame {
     public void moveMonster(int newOrient){
         for(int i=0;i<arrayMonster.size();i++){
             arrayMonster.get(i).changeOrient(newOrient);
+            
             arrayMonster.get(i).move(arrGrass,arrWall,1);
+            if(newOrient== monster.LEFT){
+                newOrient = monster.DOWN;
+            }
+            else if(newOrient== monster.DOWN){
+                newOrient = monster.RIGHT;
+            }
+            else if(newOrient== monster.RIGHT){
+                newOrient = monster.UP;
+            }
+            else if(newOrient== monster.UP){
+                newOrient = monster.LEFT;
+            }
         }
 
     }
@@ -208,8 +221,9 @@ public class RunGame {
         }
         return true;
     }
+    
 }
-
+ 
 
 
 

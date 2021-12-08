@@ -59,22 +59,22 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
            }
             moveset++;
             
-            if(moveset == 120){
-                i =random.nextInt(100)+1;
-                moveset=0;
-            }
-                if(i<=25 ){
-                    runGame.moveMonster(monster.LEFT);
-                }
-                if(i>25 && i<=50){
+           if(moveset == 50){
+             i =random.nextInt(100)+1;
+               moveset=0;
+           }
+               if(i<=25 ){
+                  runGame.moveMonster(monster.LEFT);
+               }
+               if(i>25 && i<=50){
                     runGame.moveMonster(monster.RIGHT);
                 }
-                if(i>50 && i<=75){
+               if(i>50 && i<=75){
                     runGame.moveMonster(monster.UP);
-                }
-                if(i>75){
-                    runGame.moveMonster(monster.DOWN);
-                }
+               }
+             if(i>75){
+                  runGame.moveMonster(monster.DOWN);
+              }
             runGame.CreateBommNo(t);
             isRunning= runGame.checkdie();
             repaint();
