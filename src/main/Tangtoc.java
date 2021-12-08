@@ -6,7 +6,7 @@ import java.util.Random;
 
 import static main.Map.SIZE;
 
-public class Tangtoc {
+public class Tangtoc extends Items{
     private int x;
     private int y;
 
@@ -17,9 +17,10 @@ public class Tangtoc {
     };
 
     public Tangtoc(int x, int y) {
+        super(x,y);
         this.x = x;
         this.y = y;
-        this.image=IMAGE_Boots[0];
+        //this.image=IMAGE_Boots[0];
 
     }
 

@@ -13,11 +13,10 @@ import static main.Map.SIZE;
 
 
 public class RunGame {
-    private Grass grass;
     private bomber player;
     private monster monster1;
  
-   
+    private ArrayList<monster> arrayMonster;
     private ArrayList<Grass> arrGrass;
     private ArrayList<power> arrayPower;
     private ArrayList<Tangtoc> arrayBoots;
@@ -53,32 +52,28 @@ public class RunGame {
         timeWave=new ArrayList<>();
         arrayBoots=new ArrayList<>();
         arrayPower=new ArrayList<>();
+        arrayMonster=new ArrayList<>();
         player=new bomber(0,ScreenHeight-90-SIZE, bomber.DOWN,1);
-      //test monster
-      // test monster 
-        monster1 = new monster (100,ScreenHeight-90-SIZE, monster.DOWN,1);
-                 //test monster
-      // test monster 
-                 //test monster
-      // test monster 
-           //CreatePlayer();
+        //monster1 = new monster (90,540, monster.DOWN,1);
+        //CreatePlayer();
         CreateGrass();
         CreateBoots(arrGrass);
         CreatePower(arrGrass);
         Createwall();
+        CreateMonster();
 
     }
     public void  CreateGrass(){
         for (int i=0;i<80;i++){
             Random rand = new Random();
-            Grass grass=new Grass((rand.nextInt(15)+1)*SIZE ,(rand.nextInt(15))*SIZE,1);
+            Grass grass=new Grass((rand.nextInt(15)+1)*SIZE ,(rand.nextInt(15))*SIZE);
             arrGrass.add(grass);
         }
     }
     public void  Createwall(){
         for (int i=0;i<20;i++){
             Random rand = new Random();
-            wall wall=new wall((rand.nextInt(16))*SIZE ,(rand.nextInt(15))*SIZE,2);
+            wall wall=new wall((rand.nextInt(16))*SIZE ,(rand.nextInt(15))*SIZE);
             arrWall.add(wall);
         }
     }
@@ -95,6 +90,13 @@ public class RunGame {
                 arrayBoots.add(Boots);
                 //}
             }
+    }
+    public void  CreateMonster(){
+        for (int i=0;i<2;i++){
+            Random rand = new Random();
+            monster monster=new monster((rand.nextInt(16))*SIZE ,(rand.nextInt(15))*SIZE,rand.nextInt(3),1);
+            arrayMonster.add(monster);
+        }
     }
     public void CreatePower(ArrayList<Grass> arrGrass){
         Random rand=new Random();
@@ -133,7 +135,7 @@ public class RunGame {
             }
         }
         for (int i=0;i<bomNos.size();i++){
-            //arrWaveBoom.get(i).checkBoomToBoss(arrBoss);
+            bomNos.get(i).checkBoomtoMonster(arrayMonster);
             if (t-timeWave.get(i)>=TIME_WAVE){
                 bomNos.remove(i);
                 timeWave.remove(i);
@@ -151,7 +153,7 @@ public class RunGame {
         player.changeOrient(newOrient);
         player.move(arrGrass,arrWall,1);
         player.CheckItems(arrayBoots,arrayPower);
-        //player.moveItem(arrItem);
+
     }
 
     public void draw(Graphics2D g2d){
@@ -175,21 +177,36 @@ public class RunGame {
             for (BomNo bomNo:bomNos){
                 bomNo.draw(g2d, arrGrass, arrWall);
             }
+            for( monster monster:arrayMonster){
+                monster.draw(g2d);
+            }
             player.draw(g2d);
-            monster1.draw(g2d);
+            //monster1.draw(g2d);
 
         }catch (ConcurrentModificationException e){
 
         }
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////tester 
+
     public void moveMonster(int newOrient){
-        monster1.changeOrient(newOrient);
-        monster1.move(arrGrass,arrWall,1);
+        for(int i=0;i<arrayMonster.size();i++){
+            arrayMonster.get(i).changeOrient(newOrient);
+            arrayMonster.get(i).move(arrGrass,arrWall,1);
+        }
+
+    }
+    public boolean checkdie(){
+        for (int i=0;i<bomNos.size();i++){
+            if(bomNos.get(i).checkBoomtoBomber(player)==true) {
+                return false;
+            }
+        }
+        for (int i=0;i<arrayMonster.size();i++){
+            if(arrayMonster.get(i).checkdietoBomber(player)==true){
+                return false;
+            }
+        }
+        return true;
     }
 }
 

@@ -10,16 +10,13 @@ public class Map {
     private int x;
     private int y;
     public int bit;
-    public static final int SIZE = 46;
-    public final Image[] MY_IMAGE = {
-            new ImageIcon(getClass().getResource("/images/background.jpg")).getImage(),
+    public static final int SIZE = 45;
 
-    };
 
-    public Map(int x, int y, int bit) {
+    public Map(int x, int y) {
         this.x = x;
         this.y = y;
-        this.bit = bit;
+
     }
 
     public int getX() {

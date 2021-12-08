@@ -2,7 +2,7 @@ package main;
 import javax.swing.*;
 
 public class newFrame extends JFrame {
-    public static final int ScreenWidth = 765;
+    public static final int ScreenWidth = 740;
     public static final int ScreenHeight = 720;
 
     public newFrame(){

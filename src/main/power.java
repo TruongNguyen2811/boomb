@@ -5,7 +5,7 @@ import java.awt.*;
 
 import static main.Map.SIZE;
 
-public class power {
+public class power extends Items{
     private int x;
     private int y;
 
@@ -16,6 +16,7 @@ public class power {
     };
 
     public power(int x, int y) {
+        super(x,y);
         this.x = x;
         this.y = y;
 

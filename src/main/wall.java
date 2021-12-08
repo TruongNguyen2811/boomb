@@ -6,19 +6,19 @@ import java.util.Random;
 
 import static main.Map.SIZE;
 
-public class wall  {
+public class wall extends Map {
     private int x;
     private int y;
     private int checkWall;
-    public wall(int x, int y, int checkWall) {
+
+    public wall(int x, int y) {
+        super(x,y);
         this.x = x;
         this.y = y;
-        this.checkWall=checkWall;
+
     }
 
-    public int getCheckWall() {
-        return checkWall;
-    }
+
 
     private Image image;
     public final Image[] IMAGE_GRASS={

@@ -30,19 +30,19 @@ public class monster {
      private int imageIndex = 0;
     
     public final Image[] IMAGES_MONSTER_LEFT = {
-            new ImageIcon(getClass().getResource("/images/player_left_1.png")).getImage(),
+            new ImageIcon(getClass().getResource("/images/covid.png")).getImage(),
 
     };
     public final Image[] IMAGES_MONSTER_RIGHT = {
-            new ImageIcon(getClass().getResource("/images/player_right_1.png")).getImage(),
+            new ImageIcon(getClass().getResource("/images/covid.png")).getImage(),
 
     };
     public final Image[] IMAGES_MONSTER_UP = {
-            new ImageIcon(getClass().getResource("/images/player_up_1.png")).getImage(),
+            new ImageIcon(getClass().getResource("/images/covid.png")).getImage(),
 
     };
     public final Image[] IMAGES_MONSTER_DOWN = {
-            new ImageIcon(getClass().getResource("/images/player_down_1.png")).getImage(),
+            new ImageIcon(getClass().getResource("/images/covid.png")).getImage(),
 
     };
     public monster(int x, int y, int orient, int timeMove) {
@@ -62,37 +62,37 @@ public class monster {
         switch (orient) {
             case LEFT: {
                 if (!isIrun()) {
-                    g2d.drawImage(IMAGES_MONSTER_LEFT[0], x, y, SIZE, SIZE + 10, null);
+                    g2d.drawImage(IMAGES_MONSTER_LEFT[0], x, y, SIZE, SIZE , null);
                 } else {
                     imageIndex++;
-                    g2d.drawImage(IMAGES_MONSTER_LEFT[0], x, y, SIZE, SIZE + 10, null);
+                    g2d.drawImage(IMAGES_MONSTER_LEFT[0], x, y, SIZE, SIZE , null);
                 }
                 break;
             }
             case RIGHT: {
                 if (!isIrun()) {
-                    g2d.drawImage(IMAGES_MONSTER_RIGHT[0], x, y, SIZE, SIZE + 10, null);
+                    g2d.drawImage(IMAGES_MONSTER_RIGHT[0], x, y, SIZE, SIZE , null);
                 } else {
                     imageIndex++;
-                    g2d.drawImage(IMAGES_MONSTER_RIGHT[0], x, y, SIZE, SIZE + 10, null);
+                    g2d.drawImage(IMAGES_MONSTER_RIGHT[0], x, y, SIZE, SIZE, null);
                 }
                 break;
             }
             case UP: {
                 if (!isIrun()) {
-                    g2d.drawImage(IMAGES_MONSTER_UP[0], x, y, SIZE, SIZE + 10, null);
+                    g2d.drawImage(IMAGES_MONSTER_UP[0], x, y, SIZE, SIZE, null);
                 } else {
                     imageIndex++;
-                    g2d.drawImage(IMAGES_MONSTER_UP[0], x, y, SIZE, SIZE + 10, null);
+                    g2d.drawImage(IMAGES_MONSTER_UP[0], x, y, SIZE, SIZE , null);
                 }
                 break;
             }
             case DOWN: {
                 if (!isIrun()) {
-                    g2d.drawImage(IMAGES_MONSTER_DOWN[0], x, y, SIZE, SIZE + 10, null);
+                    g2d.drawImage(IMAGES_MONSTER_DOWN[0], x, y, SIZE, SIZE , null);
                 } else {
                     imageIndex++;
-                    g2d.drawImage(IMAGES_MONSTER_DOWN[0], x, y, SIZE, SIZE + 10, null);
+                    g2d.drawImage(IMAGES_MONSTER_DOWN[0], x, y, SIZE, SIZE , null);
                 }
             }
             break;
@@ -106,7 +106,7 @@ public class monster {
         }
         int xRaw = x;
         int yRaw = y;
-        switch (orient) {
+        /*switch (orient) {
             case LEFT:
                 xRaw -= speed;
                 break;
@@ -119,7 +119,35 @@ public class monster {
             case DOWN:
                 yRaw += speed;
             default:
-        }
+        }*/
+         if(orient==LEFT){
+             if(xRaw==0){
+                 orient=RIGHT;
+                 xRaw+=speed;
+             }
+             else xRaw-=speed;
+         }
+         if(orient==RIGHT){
+             if(xRaw==675){
+                 orient=LEFT;
+                 xRaw-=speed;
+             }
+             else xRaw+=speed;
+         }
+         if(orient==DOWN){
+             if(yRaw==630){
+                 orient=UP;
+                 yRaw-=speed;
+             }
+             else yRaw+=speed;
+         }
+         if(orient==UP){
+             if(yRaw==0){
+                 orient=DOWN;
+                 yRaw+=speed;
+             }
+             else yRaw-=speed;
+         }
         int xRaw1 = x;
         int yRaw1 = y;
         x = xRaw;
@@ -132,7 +160,7 @@ public class monster {
     }
 
     public Rectangle getRect() {
-        Rectangle rectangle = new Rectangle(x, y , SIZE - 15, SIZE );
+        Rectangle rectangle = new Rectangle(x, y , SIZE-5, SIZE-5 );
         return rectangle;
     }
 
@@ -154,5 +182,13 @@ public class monster {
             }
 
         return false;
+    }
+    public boolean checkdietoBomber(bomber bomber) {
+        Rectangle rectangle = getRect().intersection(bomber.getRect());
+        if (rectangle.isEmpty() == false) {
+            return true;
+        }
+        return false;
+
     }
 }

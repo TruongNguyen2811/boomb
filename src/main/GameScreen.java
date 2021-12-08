@@ -62,7 +62,7 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
             if(moveset == 120){
                 i =random.nextInt(100)+1;
                 moveset=0;
-            }  
+            }
                 if(i<=25 ){
                     runGame.moveMonster(monster.LEFT);
                 }
@@ -75,16 +75,8 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
                 if(i>75){
                     runGame.moveMonster(monster.DOWN);
                 }
-                
-            
-            
-            
-            
-            
-            
-
-            isRunning=true;
             runGame.CreateBommNo(t);
+            isRunning= runGame.checkdie();
             repaint();
             try {
                 Thread.sleep(20);
