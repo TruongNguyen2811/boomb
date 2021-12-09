@@ -11,7 +11,7 @@ import static main.newFrame.ScreenHeight;
 import static main.newFrame.ScreenWidth;
 import static main.Map.SIZE;
 
-public class bomber {
+public class bomber  {
     private int x;
     private int y;
     private int orient;
@@ -170,9 +170,10 @@ public class bomber {
                     return true;
                 }
             }
-
+        
         return false;
-    }
+        }
+    
     public void CheckItems(ArrayList<Tangtoc>arrayboots,ArrayList<power>arrayPower){
         int c=0;
         for(int i=0;i<arrayboots.size();i++){

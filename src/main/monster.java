@@ -104,7 +104,7 @@ public class monster {
         isMonsterRun = false;
 
     }
-     public void move(ArrayList<Grass>arrGrass,ArrayList<wall>arrWall,int t) {
+     public void move(ArrayList<Grass>arrGrass,ArrayList<wall>arrWall,ArrayList<Bom> arrBom,int t) {
         if (t % timeMove != 0) {
             return;
         }
@@ -156,7 +156,7 @@ public class monster {
         int yRaw1 = y;
         x = xRaw;
         y = yRaw;
-        boolean checkMovePlayer= checkMoveMap(arrGrass,arrWall);
+        boolean checkMovePlayer= checkMoveMap(arrGrass,arrWall,arrBom);
         if (checkMovePlayer==true ){
             x=xRaw1;
             y=yRaw1;
@@ -168,7 +168,7 @@ public class monster {
         return rectangle;
     }
 
-    public boolean checkMoveMap(ArrayList<Grass> arrGrass,ArrayList<wall>arrWall) {
+    public boolean checkMoveMap(ArrayList<Grass> arrGrass,ArrayList<wall>arrWall,ArrayList<Bom> arrBom) {
         for (Grass grass : arrGrass) {
 
                 Rectangle rectangle = getRect().intersection(grass.getRect());
@@ -184,7 +184,14 @@ public class monster {
                     return true;
                 }
             }
+        for (Bom bom : arrBom) {
 
+                Rectangle rectangle = getRect().intersection(bom.getRect());
+                if (rectangle.isEmpty() == false) {
+                    return true;
+                }
+            }
+        
         return false;
     }
     public boolean checkdietoBomber(bomber bomber) {
@@ -195,4 +202,5 @@ public class monster {
         return false;
 
     }
+     
 }

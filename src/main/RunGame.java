@@ -241,7 +241,7 @@ public class RunGame {
         for(int i=0;i<arrayMonster.size();i++){
             arrayMonster.get(i).changeOrient(newOrient);
             
-            arrayMonster.get(i).move(arrGrass,arrWall,1);
+            arrayMonster.get(i).move(arrGrass,arrWall,arrBoom,1);
             if(newOrient== monster.LEFT){
                 newOrient = monster.DOWN;
             }
