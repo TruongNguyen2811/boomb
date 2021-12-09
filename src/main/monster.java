@@ -51,6 +51,10 @@ public class monster {
         this.timeMove = timeMove;
         this.orient = orient;
     }
+    public monster(int x,int y){
+        this.x = x;
+        this.y = y;
+    }
     public void changeOrient(int newOrient) {
         orient = newOrient;
         isMonsterRun = true;

@@ -59,7 +59,7 @@ public class RunGame {
         CreateBoots(arrGrass);
         CreatePower(arrGrass);
         Createwall();
-        CreateMonster(numberMonster);
+        CreateMonster(numberMonster,arrGrass,arrWall);
         //checkdeadmonster();
 
     }
@@ -82,7 +82,7 @@ public class RunGame {
         int max;
         max=rand.nextInt(4)+1;
         for (int i = 1; i <=max ; i++) {
-            int position = rand.nextInt(10) + 1;
+            int position = rand.nextInt(80) ;
             //for (int j = 0; j < arrGrass.size(); j++) {
                 int xRaw = arrGrass.get(position).getX();
                 int yRaw = arrGrass.get(position).getY();
@@ -91,12 +91,45 @@ public class RunGame {
                 //}
             }
     }
-    public void  CreateMonster(int numberMonster){
-        for (int i=0;i<2+numberMonster;i++){
-            Random rand = new Random();
-            monster monster=new monster((rand.nextInt(16))*SIZE ,(rand.nextInt(15))*SIZE,rand.nextInt(3),1);
-            arrayMonster.add(monster);
+    public void  CreateMonster(int numberMonster,ArrayList<Grass> arrGrass,ArrayList<wall> arrWall){
+        for (int i=0;i<2+numberMonster;i++) {
+            boolean trung = true;
+            //int c=0;
+            while (trung) {
+                int c=0;
+                Random rand = new Random();
+                monster monster = new monster((rand.nextInt(16)) * SIZE, (rand.nextInt(15)) * SIZE, rand.nextInt(3), 1);
+                arrayMonster.add(monster);
+                for(int j=0;j<arrGrass.size();j++){
+                    Rectangle rectangle = monster.getRect().intersection(arrGrass.get(j).getRect());
+                    if(rectangle.isEmpty() == false){
+                        c++;
+                    }
+                }
+                for(int j=0;j<arrWall.size();j++){
+                    Rectangle rectangle = monster.getRect().intersection(arrWall.get(j).getRect());
+                    if(rectangle.isEmpty() == false){
+                        c++;
+                    }
+                }
+                if(c==0){
+                    trung = false;
+                    //arrayMonster.add(monster);
+                }
+                else {
+                    //trung=true;
+                    arrayMonster.remove(i);
+                }
+
+
+                //arrayMonster.add(monster);
+            }
         }
+        /*for (int i=0;i<2+numberMonster;i++) {
+            Random rand = new Random();
+            monster monster = new monster((rand.nextInt(16)) * SIZE, (rand.nextInt(15)) * SIZE, rand.nextInt(3), 1);
+            arrayMonster.add(monster);
+        }*/
         //checkdeadmonster();
     }
     public void CreatePower(ArrayList<Grass> arrGrass){
