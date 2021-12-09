@@ -34,7 +34,6 @@ public class RunGame {
     public final Image[] MY_IMAGE={
             new ImageIcon(getClass().getResource("/images/background.jpg")).getImage()
     };
-
     public boolean isCheckDieWin() {
         return checkDieWin;
     }
@@ -43,7 +42,7 @@ public class RunGame {
         this.checkDieWin = checkDieWin;
     }
 
-    public void initGame(){
+    public void initGame(int numberMonster){
         timeBoom=new ArrayList<>();
         arrGrass= new ArrayList<>();
         arrWall=new ArrayList<>();
@@ -60,7 +59,8 @@ public class RunGame {
         CreateBoots(arrGrass);
         CreatePower(arrGrass);
         Createwall();
-        CreateMonster();
+        CreateMonster(numberMonster);
+        //checkdeadmonster();
 
     }
     public void  CreateGrass(){
@@ -73,7 +73,7 @@ public class RunGame {
     public void  Createwall(){
         for (int i=0;i<20;i++){
             Random rand = new Random();
-            wall wall=new wall((rand.nextInt(16))*SIZE ,(rand.nextInt(15))*SIZE);
+            wall wall=new wall((rand.nextInt(15)+1)*SIZE ,(rand.nextInt(15))*SIZE);
             arrWall.add(wall);
         }
     }
@@ -91,12 +91,13 @@ public class RunGame {
                 //}
             }
     }
-    public void  CreateMonster(){
-        for (int i=0;i<2;i++){
+    public void  CreateMonster(int numberMonster){
+        for (int i=0;i<2+numberMonster;i++){
             Random rand = new Random();
             monster monster=new monster((rand.nextInt(16))*SIZE ,(rand.nextInt(15))*SIZE,rand.nextInt(3),1);
             arrayMonster.add(monster);
         }
+        //checkdeadmonster();
     }
     public void CreatePower(ArrayList<Grass> arrGrass){
         Random rand=new Random();
@@ -142,10 +143,25 @@ public class RunGame {
             }
         }
     }
+    /*public void checkdeadmonster(){
+        try{
+            for(int i=0;i<bomNos.size();i++){
+                bomNos.get(i).checkBoomtoMonster(arrayMonster);
+            }
+        }
+        catch (IndexOutOfBoundsException e) {
+        }
+    }*/
     public void createboom(int t) {
         Bom boom= player.datbom(arrBoom);
         arrBoom.add(boom);
         timeBoom.add(t);
+    }
+    public boolean checkwin() {
+        if(arrayMonster.isEmpty()==true){
+            return true;
+        }
+        return false;
     }
 
 
@@ -218,6 +234,9 @@ public class RunGame {
             if(arrayMonster.get(i).checkdietoBomber(player)==true){
                 return false;
             }
+        }
+        if(arrayMonster.isEmpty()==true){
+            return false;
         }
         return true;
     }

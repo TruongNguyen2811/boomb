@@ -12,9 +12,12 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
     private RunGame runGame=new RunGame();
     private BitSet bitSet=new BitSet(10000);
     boolean isRunning=true;
+    boolean win=true;
+    int numberMonsters=0;
     public static final int TIME_DAT=20;
     public void initPanelGame() {
-        runGame.initGame();
+
+        runGame.initGame(numberMonsters);
         Thread t= new Thread(this);
         t.start();
         setFocusable(true);
@@ -40,51 +43,60 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
     public void run() {
         int time=0;
         int t=0;
-        while (isRunning){
-            t++;
-            if (bitSet.get(KeyEvent.VK_LEFT)){
-                runGame.movePlayer(bomber.LEFT);
-            }else if (bitSet.get(KeyEvent.VK_RIGHT)){
-                runGame.movePlayer(bomber.RIGHT);
-            }else if (bitSet.get(KeyEvent.VK_UP)){
-                runGame.movePlayer(bomber.UP);
-            }else if (bitSet.get(KeyEvent.VK_DOWN)){
-                runGame.movePlayer(bomber.DOWN);
-            }
-            if (bitSet.get(KeyEvent.VK_SPACE)){
+        while (win) {
+            while (isRunning) {
+                t++;
+                if (bitSet.get(KeyEvent.VK_LEFT)) {
+                    runGame.movePlayer(bomber.LEFT);
+                } else if (bitSet.get(KeyEvent.VK_RIGHT)) {
+                    runGame.movePlayer(bomber.RIGHT);
+                } else if (bitSet.get(KeyEvent.VK_UP)) {
+                    runGame.movePlayer(bomber.UP);
+                } else if (bitSet.get(KeyEvent.VK_DOWN)) {
+                    runGame.movePlayer(bomber.DOWN);
+                }
+                if (bitSet.get(KeyEvent.VK_SPACE)) {
 
-                  runGame.createboom(t);
-               time=t;
-               
-           }
-            moveset++;
-            
-           if(moveset == 50){
-             i =random.nextInt(100)+1;
-               moveset=0;
-           }
-               if(i<=25 ){
-                  runGame.moveMonster(monster.LEFT);
-               }
-               if(i>25 && i<=50){
+                    runGame.createboom(t);
+                    time = t;
+
+                }
+                moveset++;
+
+                if (moveset == 50) {
+                    i = random.nextInt(100) + 1;
+                    moveset = 0;
+                }
+                if (i <= 25) {
+                    runGame.moveMonster(monster.LEFT);
+                }
+                if (i > 25 && i <= 50) {
                     runGame.moveMonster(monster.RIGHT);
                 }
-               if(i>50 && i<=75){
+                if (i > 50 && i <= 75) {
                     runGame.moveMonster(monster.UP);
-               }
-             if(i>75){
-                  runGame.moveMonster(monster.DOWN);
-              }
-            runGame.CreateBommNo(t);
-            isRunning= runGame.checkdie();
-            repaint();
-            try {
-                Thread.sleep(20);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+                }
+                if (i > 75) {
+                    runGame.moveMonster(monster.DOWN);
+                }
+                runGame.CreateBommNo(t);
+                isRunning = runGame.checkdie();
+                repaint();
+                try {
+                    Thread.sleep(20);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            if(runGame.checkwin()==true){
+                numberMonsters++;
+                runGame.initGame(numberMonsters);
+                isRunning = true;
+            }
+
         }
-    }
+        }
+
 
     @Override
     public void keyTyped(KeyEvent e) {
