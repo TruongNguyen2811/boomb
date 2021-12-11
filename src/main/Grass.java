@@ -12,7 +12,7 @@ public class Grass extends Map{
     //private ArrayList<Grass> arrGrass;
     private int x;
     private int y;
-    private int checkGrass;
+    //private int checkGrass;
 
     private Image image;
     public final Image[] IMAGE_GRASS={
@@ -27,14 +27,11 @@ public class Grass extends Map{
 
     }
 
-    @Override
+    /*@Override
     public int getX() {
         return x;
     }
 
-    public int getCheckGrass() {
-        return checkGrass;
-    }
 
     @Override
     public void setX(int x) {
@@ -48,7 +45,7 @@ public class Grass extends Map{
     @Override
     public void setY(int y) {
         this.y = y;
-    }
+    }*/
 
 
 
@@ -57,11 +54,11 @@ public class Grass extends Map{
         g2d.drawImage(image,x,y,SIZE,SIZE,null);
     }
 
-    @Override
-    public Rectangle getRect(){
+    //@Override
+    /*public Rectangle getRect(){
         Rectangle rectangle= new Rectangle(x,y,SIZE-10,SIZE-10);
-        return  rectangle;
-    }
+        return  rectangle;*/
+    //}
 
 
 

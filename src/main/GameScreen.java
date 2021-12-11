@@ -6,6 +6,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.BitSet;
 import java.util.Random;
+import javax.sound.sampled.Clip;
+
+import static main.newFrame.ScreenHeight;
+import static main.newFrame.ScreenWidth;
 
 
 public class GameScreen extends JPanel implements KeyListener,Runnable{
@@ -14,6 +18,10 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
     boolean isRunning=true;
     boolean win=true;
     int numberMonsters=0;
+    public final Image[] MY_IMAGE={
+            new ImageIcon(getClass().getResource("/images/snow.jpg")).getImage(),
+            new ImageIcon(getClass().getResource("/images/background.jpg")).getImage(),
+    };
     public static final int TIME_DAT=20;
     public void initPanelGame() {
 
@@ -33,17 +41,22 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
     @Override
     protected void paintChildren(Graphics g) {
         super.paintChildren(g);
+        //Random rand = new Random();
         Graphics2D g2d= (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+        //g2d.drawImage(MY_IMAGE[rand.nextInt(2)],0,0,ScreenWidth,ScreenHeight,null);
         runGame.draw(g2d);
     }
     Random random = new Random();
     int i =random.nextInt(100)+1;
     @Override
     public void run() {
-        int time=0;
-        int t=0;
+        int numberMonsters=0;
+        //int time=0;
+        //int t=0;
         while (win) {
+            int t=0;
+            int time=0;
             while (isRunning) {
                 t++;
                 if (bitSet.get(KeyEvent.VK_LEFT)) {
@@ -59,7 +72,9 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
 
                     runGame.createboom(t);
                     time = t;
-
+                }
+                if(t==500){
+                    runGame.createMonstercon(1);
                 }
                 moveset++;
 
@@ -93,6 +108,8 @@ public class GameScreen extends JPanel implements KeyListener,Runnable{
                 runGame.initGame(numberMonsters);
                 isRunning = true;
             }
+
+
 
         }
         }

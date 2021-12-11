@@ -5,7 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 
-public class Map {
+public abstract class Map {
 
     private int x;
     private int y;
@@ -37,7 +37,7 @@ public class Map {
     }
 
     public Rectangle getRect() {
-        Rectangle rectangle = new Rectangle(x, y + 15, SIZE - 10, SIZE - 10);
+        Rectangle rectangle = new Rectangle(x, y , SIZE - 10, SIZE - 10);
         return rectangle;
     }
 

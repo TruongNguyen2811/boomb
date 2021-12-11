@@ -120,8 +120,10 @@ public class Menu extends javax.swing.JFrame {
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
+        //System.exit(0);
         newFrame newFrame=new newFrame();
         newFrame.setVisible(true);
+        //System.exit(0);
       
     }//GEN-LAST:event_jLabel2MouseClicked
 

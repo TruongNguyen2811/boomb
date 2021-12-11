@@ -2,9 +2,11 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 
 import static main.Map.SIZE;
+import static main.newFrame.ScreenHeight;
 
 public class BomNo {
     private int x;
@@ -208,6 +210,51 @@ public class BomNo {
             }
         }
     }
+    public void checkBoomtoBoss (ArrayList<monster> monster,ArrayList<boss> boss) {
+        for (int i = 0; i < boss.size(); i++) {
+            try {
+                for (int j = 1; j <= trai; j++) {
+                    int xRaw = x - j * SIZE;
+                    int yRaw = y;
+                    Rectangle rectangle = getRect(xRaw, yRaw).intersection(boss.get(i).getRect());
+                    if (rectangle.isEmpty() == false) {
+                        boss.remove(i);
+
+                    }
+                }
+                for (int j = 1; j <= phai; j++) {
+                    int xRaw = x + j * SIZE;
+                    int yRaw = y;
+                    Rectangle rectangle = getRect(xRaw, yRaw).intersection(boss.get(i).getRect());
+                    if (rectangle.isEmpty() == false) {
+                        boss.remove(i);
+
+                    }
+                }
+                for (int j = 1; j <= tren; j++) {
+                    int xRaw = x;
+                    int yRaw = y - j * SIZE;
+                    Rectangle rectangle = getRect(xRaw, yRaw).intersection(boss.get(i).getRect());
+                    if (rectangle.isEmpty() == false) {
+                        boss.remove(i);
+
+
+                    }
+                }
+                for (int j = 1; j <= duoi; j++) {
+                    int xRaw = x;
+                    int yRaw = y + j * SIZE;
+                    Rectangle rectangle = getRect(xRaw, yRaw).intersection(boss.get(i).getRect());
+                    if (rectangle.isEmpty() == false) {
+                        boss.remove(i);
+
+                    }
+                }
+            } catch (IndexOutOfBoundsException e) {
+            }
+        }
+    }
+
 
 
 

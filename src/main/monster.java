@@ -9,14 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import static main.Map.SIZE;
 
-import static main.newFrame.ScreenHeight;
-import static main.newFrame.ScreenWidth;
-import static main.bomber.DOWN;
-import static main.bomber.LEFT;
-import static main.bomber.RIGHT;
-import static main.bomber.UP;
-
-public class monster {
+public class monster extends Characters{
     private int x;
     private int y;
     private int orient;
@@ -29,31 +22,23 @@ public class monster {
     private boolean isMonsterRun = false;
      private int imageIndex = 0;
     
-    public final Image[] IMAGES_MONSTER_LEFT = {
+    public final Image[] IMAGES_MONSTER = {
             new ImageIcon(getClass().getResource("/images/covid.png")).getImage(),
-
-    };
-    public final Image[] IMAGES_MONSTER_RIGHT = {
-            new ImageIcon(getClass().getResource("/images/covid.png")).getImage(),
-
-    };
-    public final Image[] IMAGES_MONSTER_UP = {
-            new ImageIcon(getClass().getResource("/images/covid.png")).getImage(),
-
-    };
-    public final Image[] IMAGES_MONSTER_DOWN = {
-            new ImageIcon(getClass().getResource("/images/covid.png")).getImage(),
-
     };
     public monster(int x, int y, int orient, int timeMove) {
+        super(x,y,orient,timeMove);
         this.x = x;
         this.y = y;
         this.timeMove = timeMove;
         this.orient = orient;
     }
     public monster(int x,int y){
+        super(x,y);
         this.x = x;
         this.y = y;
+    }
+    public void draw(Graphics2D g2d) {
+        g2d.drawImage(IMAGES_MONSTER[0], x, y, SIZE, SIZE , null);
     }
     public void changeOrient(int newOrient) {
         orient = newOrient;
@@ -62,68 +47,14 @@ public class monster {
     public boolean isIrun() {
         return isMonsterRun;
     }
-    public void draw(Graphics2D g2d) {
-        switch (orient) {
-            case LEFT: {
-                if (!isIrun()) {
-                    g2d.drawImage(IMAGES_MONSTER_LEFT[0], x, y, SIZE, SIZE , null);
-                } else {
-                    imageIndex++;
-                    g2d.drawImage(IMAGES_MONSTER_LEFT[0], x, y, SIZE, SIZE , null);
-                }
-                break;
-            }
-            case RIGHT: {
-                if (!isIrun()) {
-                    g2d.drawImage(IMAGES_MONSTER_RIGHT[0], x, y, SIZE, SIZE , null);
-                } else {
-                    imageIndex++;
-                    g2d.drawImage(IMAGES_MONSTER_RIGHT[0], x, y, SIZE, SIZE, null);
-                }
-                break;
-            }
-            case UP: {
-                if (!isIrun()) {
-                    g2d.drawImage(IMAGES_MONSTER_UP[0], x, y, SIZE, SIZE, null);
-                } else {
-                    imageIndex++;
-                    g2d.drawImage(IMAGES_MONSTER_UP[0], x, y, SIZE, SIZE , null);
-                }
-                break;
-            }
-            case DOWN: {
-                if (!isIrun()) {
-                    g2d.drawImage(IMAGES_MONSTER_DOWN[0], x, y, SIZE, SIZE , null);
-                } else {
-                    imageIndex++;
-                    g2d.drawImage(IMAGES_MONSTER_DOWN[0], x, y, SIZE, SIZE , null);
-                }
-            }
-            break;
-        }
-        isMonsterRun = false;
 
-    }
      public void move(ArrayList<Grass>arrGrass,ArrayList<wall>arrWall,ArrayList<Bom> arrBom,int t) {
         if (t % timeMove != 0) {
             return;
         }
         int xRaw = x;
         int yRaw = y;
-        /*switch (orient) {
-            case LEFT:
-                xRaw -= speed;
-                break;
-            case RIGHT:
-                xRaw += speed;
-                break;
-            case UP:
-                yRaw -= speed;
-                break;
-            case DOWN:
-                yRaw += speed;
-            default:
-        }*/
+
          if(orient==LEFT){
              if(xRaw==0){
                  orient=RIGHT;

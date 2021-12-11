@@ -11,7 +11,7 @@ import static main.newFrame.ScreenHeight;
 import static main.newFrame.ScreenWidth;
 import static main.Map.SIZE;
 
-public class bomber  {
+public class bomber extends Characters {
     private int x;
     private int y;
     private int orient;
@@ -44,6 +44,7 @@ public class bomber  {
     };
 
     public bomber(int x, int y, int orient, int timeMove) {
+        super(x,y,orient,timeMove);
         this.x = x;
         this.y = y;
         this.timeMove = timeMove;

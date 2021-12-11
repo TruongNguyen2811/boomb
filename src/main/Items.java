@@ -5,13 +5,9 @@ import java.awt.*;
 
 import static main.Map.SIZE;
 
-public class Items {
+public abstract class  Items {
     private int x;
     private int y;
-
-    private Image image;
-
-
     public Items(int x, int y) {
         this.x = x;
         this.y = y;
